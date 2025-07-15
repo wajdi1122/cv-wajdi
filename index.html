@@ -3,102 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Wajdi Mili</title>
+    <title>MILI WAJDI - Ingénieur Cloud Computing & DevOps</title>
+    <meta name="description" content="Ingénieur Cloud Computing et DevOps spécialisé en AWS, Azure, Terraform, Docker et Kubernetes. Découvrez mon portfolio et mes projets.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Wajdi Mili</h1>
-        <p>Étudiant en ingénierie Cloud Computing, Virtualisation et DevOps</p>
-        <p><a href="mailto:wajdimili98@gmail.com">wajdimili98@gmail.com</a> | <a href="tel:55193905">+216 55 193 905</a> | <a href="https://linkedin.com/in/wajdi-mili-0789b4206" target="_blank">LinkedIn</a> | <a href="https://github.com/wajdi1122" target="_blank">GitHub</a></p>
-    </header>
-    
-    <section id="profile">
-        <h2>Profil</h2>
-        <p>Étudiant en troisième année d’ingénierie, spécialisé en cloud computing et virtualisation, actuellement à la recherche d’un stage de fin d’études (PFE). Je possède des compétences avancées en déploiement et gestion d'infrastructures cloud, virtualisation, ainsi qu’en développement d'applications cloud-native. Fort d'une expertise en analyse des besoins, en résolution de problèmes et en travail d’équipe, je suis motivé à contribuer à des projets innovants dans le domaine du cloud computing.</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>MILI WAJDI</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#profil">Profil</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#formations">Formations</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>MILI WAJDI</h1>
+                    <h2>Ingénieur Cloud Computing & Virtualization</h2>
+                    <p>Ingénieur fraîchement diplômé en Cloud Computing, Virtualisation et DevOps, passionné par les environnements cloud et les technologies d'automatisation. Fort de mon projet de fin d'études portant sur l'automatisation du déploiement d'une infrastructure AWS ECS Fargate avec Terraform, je suis motivé à intégrer une équipe innovante afin de mettre mes compétences en pratique, évoluer dans un cadre stimulant et contribuer efficacement aux projets.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Me Contacter</a>
+                        <a href="https://wajdi1122.github.io/cv-wajdi/" target="_blank" class="btn btn-secondary">Télécharger CV</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/wajdi1122" target="_blank" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/wajdi-mili-0789b4206" target="_blank" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="avatar">
+                       <img src="./unnamed.png" alt="Wajdi Mili" width="200" height="200" style="border-radius: 50%;">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="experience">
-        <h2>Expériences Professionnelles</h2>
-        <ul>
-            <li><strong>Développeur Mobile (Java)</strong> - CAEI Digital Moov <br>09/2024 – 10/2024, Belvedere, Tunis<br>
-                Création d'une application mobile intuitive dédiée aux employés, permettant de soumettre des demandes d'avances et d'autorisations de manière numérique, accessible sur Android et iOS.</li>
-                
-            <li><strong>Développeur Web</strong> - Aloujour Tourism <br>06/2023 – 07/2023, Tunis, Tunisie<br>
-                Développement d’un site commercial pour une agence de voyage.</li>
-                
-            <li><strong>Stage de PFE</strong> - Municipalité Mornaguia <br>01/2021 – 05/2021, Mornaguia, Tunisie<br>
-                Réalisation d'une application mobile permettant de signaler des problèmes des habitants et de consulter des services municipaux.</li>
-                
-            <li><strong>Stage de perfectionnement</strong> - Start-up YEBNI <br>01/2020 – 02/2020, Tunis, Tunisie<br>
-                Création d'un jeu de cartes avec Unity.</li>
-                
-            <li><strong>Stage d'initiation</strong> - La Poste Hched Tunis <br>01/2019 – 02/2019, Tunis, Tunisie<br>
-                Initiation aux termes techniques et à la gestion de la poste au bureau Hached Tunis.</li>
-        </ul>
+
+    <!-- Profile Section -->
+    <section id="profil" class="profile">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mon Profil</h2>
+                <p>Découvrez mon parcours, mes compétences et ma passion pour les technologies cloud et DevOps</p>
+            </div>
+            <div class="profile-grid">
+                <div class="profile-info">
+                    <h3>À Propos</h3>
+                    <p>Ingénieur fraîchement diplômé en Cloud Computing, Virtualisation et DevOps, passionné par les environnements cloud et les technologies d'automatisation. Fort de mon projet de fin d'études portant sur l'automatisation du déploiement d'une infrastructure AWS ECS Fargate avec Terraform, je suis motivé à intégrer une équipe innovante afin de mettre mes compétences en pratique, évoluer dans un cadre stimulant et contribuer efficacement aux projets.</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <span>Mornaguia, Manouba, Tunisia</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📧</span>
+                            <span>wajdi.mili.engineer@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📱</span>
+                            <span>55193905</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">🌐</span>
+                            <span>Portfolio en ligne</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-sidebar">
+                    <div class="sidebar-card languages">
+                        <h4>🌐 Langues</h4>
+                        <div class="language-item">
+                            <span>Français</span>
+                            <span class="badge">B2</span>
+                        </div>
+                        <div class="language-item">
+                            <span>Anglais</span>
+                            <span class="badge">B2</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-card certifications">
+                        <h4>🏆 Certifications</h4>
+                        <div class="cert-item">🏅 Azure AZ-900</div>
+                        <div class="cert-item">🏅 Introduction to IoT 2.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="education">
-        <h2>Diplômes et Formations</h2>
-        <ul>
-            <li><strong>Cycle ingénieur en Cloud Computing et Virtualisation</strong> - Iteam University <br>09/2022 – Présent, Tunis, Tunisie</li>
-            <li><strong>Licence appliquée en informatique, spécialité systèmes embarqués et mobiles</strong> - ISET Kairouan <br>12/2018 – 06/2021, Kairouan, Tunisie</li>
-            <li><strong>Baccalauréat technique</strong> - Lycée Farabi Mornaguia <br>09/2014 – 06/2018, Mornaguia, Tunisie</li>
-        </ul>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Expérience Professionnelle</h2>
+                <p>Mon parcours professionnel en développement et DevOps</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Ingénieur DevOps</h3>
+                            <span class="badge current">Actuel</span>
+                        </div>
+                        <h4>Iovision</h4>
+                        <p class="timeline-date">Fév 2025 - Juin 2025 | Sfax, Tunisie</p>
+                        <ul>
+                            <li>Déploiement complet d'une infrastructure AWS (ECS Fargate, RDS, ALB, IAM, VPC) avec Terraform</li>
+                            <li>Application des principes IaC pour un déploiement modulaire, reproductible et sécurisé</li>
+                            <li>Intégration CloudWatch, SQS, SNS pour monitoring et notifications</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Développeur Mobile (Java)</h3>
+                        <h4>CAEI DIGITAL MOOV</h4>
+                        <p class="timeline-date">Sep 2024 - Oct 2024 | Tunis, Tunisie</p>
+                        <ul>
+                            <li>Application Android pour la gestion de demandes internes des employés</li>
+                            <li>Interface intuitive pour soumission numérique des demandes</li>
+                            <li>Optimisation pour accessibilité mobile</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Développeur Web</h3>
+                        <h4>Aloujour Tourism</h4>
+                        <p class="timeline-date">Juin 2023 - Juil 2023 | Tunis, Tunisie</p>
+                        <ul>
+                            <li>Site commercial pour agence de voyages avec Angular</li>
+                            <li>Interface utilisateur moderne et responsive</li>
+                            <li>Intégration des fonctionnalités de réservation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="projects">
-        <h2>Projets</h2>
-        <ul>
-            <li><strong>Plateforme Cloud Privée</strong> <br>Déploiement d'une plateforme cloud privée avec OpenStack, automatisée avec Ansible, permettant aux étudiants d'accéder à des environnements pratiques en ligne.</li>
-            
-            <li><strong>Virtualisation de gestion des clés de cryptage</strong> <br>Déploiement d'une solution de gestion des clés de cryptage utilisant Docker et un algorithme Diffie-Hellman pour sécuriser des cartes Arduino sous Java.</li>
-            
-            <li><strong>Application Web et Mobile pour maisons intelligentes</strong> <br>Développement d'une application web et mobile pour maisons intelligentes avec Laravel et Android Studio, intégrant des cartes Arduino pour la communication avec les dispositifs domestiques.</li>
-            
-            <li><strong>Application de gestion de location de voitures</strong> <br>Développement d'un système de gestion de location de voitures avec Flask pour suivre les réservations et la disponibilité des véhicules.</li>
-            
-            <li><strong>Application web d'organisation</strong> <br>Création d'une interface admin pour gérer les membres, événements et ressources d'une organisation avec Laravel.</li>
-        </ul>
+
+    <!-- Education Section -->
+    <section id="formations" class="education">
+        <div class="container">
+            <div class="section-header">
+                <h2>Formations & Diplômes</h2>
+                <p>Mon parcours académique en informatique et cloud computing</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card primary">
+                    <div class="education-icon">🎓</div>
+                    <h3>Diplôme National d'Ingénieur</h3>
+                    <h4>Informatique</h4>
+                    <p>Iteam University</p>
+                    <p class="education-date">Sep 2022 - Juil 2025 | Tunis, Tunisie</p>
+                    <span class="badge">Obtenu</span>
+                </div>
+                <div class="education-card accent">
+                    <div class="education-icon">🏆</div>
+                    <h3>Diplôme Appliqué</h3>
+                    <h4>Informatique</h4>
+                    <p>ISET Kairouan</p>
+                    <p class="education-date">Déc 2018 - Juin 2021 | Kairouan, Tunisie</p>
+                    <span class="badge">Obtenu</span>
+                </div>
+                <div class="education-card secondary">
+                    <div class="education-icon">🏫</div>
+                    <h3>Baccalauréat</h3>
+                    <h4>Section Technique</h4>
+                    <p>Farabi Mornaguia</p>
+                    <p class="education-date">Sep 2014 - Juin 2018 | Mornaguia, Tunisia</p>
+                    <span class="badge">Obtenu</span>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="skills">
-        <h2>Compétences</h2>
-        <ul>
-            <li><strong>Outils d'automatisation :</strong> Ansible, Puppet, Terraform</li>
-            <li><strong>Langages de programmation :</strong> Python, Bash, SQL, PL/SQL, Java, PHP, HTML, CSS, JavaScript, C, Android Studio</li>
-            <li><strong>Réseaux :</strong> CCNA 1, CCNA 2, Packet Tracer, GNS3, Windows Server</li>
-            <li><strong>Bases de données :</strong> Oracle, WAMP, XAMPP, MySQL, Firebase</li>
-            <li><strong>Frameworks :</strong> Laravel, Spring Boot (SOAP, REST)</li>
-            <li><strong>Infrastructure cloud :</strong> AWS, Azure, OpenStack</li>
-            <li><strong>Virtualisation :</strong> Docker Desktop, VirtualBox, VMware</li>
-            <li><strong>Conteneurisation :</strong> Docker, Kubernetes, OpenShift</li>
-            <li><strong>Administration des systèmes :</strong> Linux, Windows</li>
-            <li><strong>Cartes électroniques :</strong> ESP32, Arduino, Raspberry Pi</li>
-        </ul>
+
+    <!-- Skills Section -->
+    <section id="competences" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Compétences Techniques</h2>
+                <p>Mes expertises en cloud computing, DevOps et développement</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Infrastructure Cloud</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge primary">AWS</span>
+                        <span class="skill-badge primary">Azure</span>
+                        <span class="skill-badge primary">OpenStack</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Automatisation</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge accent">Ansible</span>
+                        <span class="skill-badge accent">Puppet</span>
+                        <span class="skill-badge accent">Terraform</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📦</div>
+                    <h3>Conteneurs</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge blue">Docker</span>
+                        <span class="skill-badge blue">Kubernetes</span>
+                        <span class="skill-badge blue">OpenShift</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🖥️</div>
+                    <h3>Systèmes</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge gray">Linux</span>
+                        <span class="skill-badge gray">Windows</span>
+                        <span class="skill-badge gray">VMware</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Développement</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge purple">Spring Boot</span>
+                        <span class="skill-badge purple">Angular</span>
+                        <span class="skill-badge purple">Laravel</span>
+                        <span class="skill-badge purple">Android</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Bases de Données</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge green">MySQL</span>
+                        <span class="skill-badge green">Oracle</span>
+                        <span class="skill-badge green">Firebase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="languages">
-        <h2>Langues</h2>
-        <ul>
-            <li>Français : Courant</li>
-            <li>Anglais : Courant</li>
-        </ul>
+
+    <!-- Projects Section -->
+    <section id="projets" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mes Projets</h2>
+                <p>Découvrez mes réalisations en cloud computing, DevOps et développement</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card primary">
+                    <div class="project-icon">☁️</div>
+                    <h3>Plateforme Cloud Privé</h3>
+                    <p>Déploiement d'une plateforme de cloud privé avec OpenStack et Ansible</p>
+                    <p class="project-date">Nov 2024 - Présent</p>
+                    <div class="project-tech">
+                        <span class="tech-badge primary">OpenStack</span>
+                        <span class="tech-badge primary">Ansible</span>
+                    </div>
+                </div>
+                <div class="project-card accent">
+                    <div class="project-icon">📊</div>
+                    <h3>Monitoring Infrastructure</h3>
+                    <p>Surveillance d'infrastructure avec ELK Stack et Prometheus-Grafana</p>
+                    <p class="project-date">Oct 2024</p>
+                    <div class="project-tech">
+                        <span class="tech-badge accent">ELK</span>
+                        <span class="tech-badge accent">Prometheus</span>
+                        <span class="tech-badge accent">Grafana</span>
+                    </div>
+                </div>
+                <div class="project-card blue">
+                    <div class="project-icon">🔄</div>
+                    <h3>CI/CD Pipeline</h3>
+                    <p>Intégration continue avec Jenkins et Docker</p>
+                    <p class="project-date">Oct 2024</p>
+                    <div class="project-tech">
+                        <span class="tech-badge blue">Jenkins</span>
+                        <span class="tech-badge blue">Docker</span>
+                    </div>
+                </div>
+                <div class="project-card purple">
+                    <div class="project-icon">🔐</div>
+                    <h3>Gestion Clés Chiffrement</h3>
+                    <p>Virtualisation de la gestion des clés avec Arduino et conteneurs</p>
+                    <p class="project-date">Fév 2024 - Mai 2024</p>
+                    <div class="project-tech">
+                        <span class="tech-badge purple">Arduino</span>
+                        <span class="tech-badge purple">Conteneurs</span>
+                    </div>
+                </div>
+                <div class="project-card green">
+                    <div class="project-icon">🏠</div>
+                    <h3>Maison Intelligente</h3>
+                    <p>Système IoT complet avec Laravel, Android et Arduino</p>
+                    <p class="project-date">Oct 2023 - Jan 2024</p>
+                    <div class="project-tech">
+                        <span class="tech-badge green">Laravel</span>
+                        <span class="tech-badge green">Android</span>
+                        <span class="tech-badge green">Arduino</span>
+                    </div>
+                </div>
+                <div class="project-card orange">
+                    <div class="project-icon">⚙️</div>
+                    <h3>Cluster Kubernetes</h3>
+                    <p>Déploiement d'un cluster Kubernetes avec K3s</p>
+                    <p class="project-date">Jan 2024</p>
+                    <div class="project-tech">
+                        <span class="tech-badge orange">Kubernetes</span>
+                        <span class="tech-badge orange">K3s</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            <li>Azure (AZ-900)</li>
-            <li>Introduction à l'IoT</li>
-        </ul>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contactez-moi</h2>
+                <p>Intéressé par mon profil ? N'hésitez pas à me contacter</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informations de Contact</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>wajdi.mili.engineer@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p>55193905</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Localisation</h4>
+                            <p>Mornaguia, Manouba, Tunisia</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h4>Suivez-moi</h4>
+                        <div class="social-links">
+                            <a href="https://github.com/wajdi1122" target="_blank" class="social-link github">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/wajdi-mili-0789b4206" target="_blank" class="social-link linkedin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                            <a href="https://wajdi1122.github.io/cv-wajdi/" target="_blank" class="social-link portfolio">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envoyez-moi un message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Envoyer le Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <section id="organizations">
-        <h2>Organisations</h2>
-        <ul>
-            <li><strong>iRobot - Club Roboutique</strong> <br>Organisation d'un événement pour réaliser un suiveur de ligne avec des capteurs d'obstacles.</li>
-        </ul>
-    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MILI WAJDI</h3>
+                    <p>Ingénieur Cloud Computing & DevOps passionné par l'innovation technologique</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="#profil">Profil</a></li>
+                        <li><a href="#experience">Expérience</a></li>
+                        <li><a href="#competences">Compétences</a></li>
+                        <li><a href="#projets">Projets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>wajdi.mili.engineer@gmail.com</li>
+                        <li>55193905</li>
+                        <li>Mornaguia, Manouba, Tunisia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MILI WAJDI. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
