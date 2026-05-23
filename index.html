@@ -1,523 +1,1323 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MILI WAJDI - Ingénieur Cloud Computing & DevOps</title>
-    <meta name="description" content="Portfolio de Wajdi Mili, Ingénieur Cloud Computing et DevOps spécialisé en AWS, Azure, Terraform, Docker et Kubernetes.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mili Wajdi — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181b22;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0f2f7;
+    --muted: #8892a4;
+    --accent-dev: #4f8ef7;
+    --accent-cloud: #34d5a3;
+    --accent-sys: #f5a623;
+    --accent-emb: #c77dff;
+    --glow-dev: rgba(79,142,247,0.15);
+    --glow-cloud: rgba(52,213,163,0.15);
+    --glow-sys: rgba(245,166,35,0.15);
+    --glow-emb: rgba(199,125,255,0.15);
+    --active: var(--accent-dev);
+    --active-glow: var(--glow-dev);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* BG GRID */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* GLOW BLOB */
+  .glow-blob {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    transition: background 0.8s ease, top 1s ease, left 1s ease;
+    background: var(--active);
+    top: -200px;
+    left: -200px;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* HEADER */
+  header {
+    padding: 3rem 0 2rem;
+    position: relative;
+  }
+  .header-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .avatar-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f8ef7, #c77dff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: white;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.12);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .avatar-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    gap: 3px;
+  }
+  .avatar-wrapper:hover .avatar-overlay { opacity: 1; }
+  .avatar-wrapper:hover .avatar { border-color: var(--active); }
+  .avatar-overlay svg { width: 18px; height: 18px; color: #fff; }
+  .avatar-overlay span {
+    font-size: 0.62rem;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  #avatarInput { display: none; }
+  .name-block h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .name-block p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .contacts {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .contacts a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contacts a:hover { color: var(--text); }
+  .contacts a svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* NAV PILLS */
+  .profile-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+  .nav-pill {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.01em;
+    bottom: -1px;
+  }
+  .nav-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .nav-pill:hover { color: var(--text); background: var(--surface); }
+  .nav-pill.active {
+    color: var(--active);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-bottom: 1px solid var(--surface);
+  }
+  .nav-pill.active .dot { opacity: 1; }
+  .nav-pill[data-profile="dev"].active { --active: var(--accent-dev); color: var(--accent-dev); }
+  .nav-pill[data-profile="cloud"].active { --active: var(--accent-cloud); color: var(--accent-cloud); }
+  .nav-pill[data-profile="sys"].active { --active: var(--accent-sys); color: var(--accent-sys); }
+  .nav-pill[data-profile="emb"].active { --active: var(--accent-emb); color: var(--accent-emb); }
+
+  /* PROFILE PANELS */
+  .profile-panel { display: none; }
+  .profile-panel.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HERO BANNER */
+  .hero-banner {
+    position: relative;
+    padding: 2rem 2rem;
+    border-radius: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--active-glow);
+    border-radius: inherit;
+  }
+  .hero-accent {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: var(--active);
+    opacity: 0.06;
+    filter: blur(40px);
+  }
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--active);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 0.75rem;
+    max-width: 680px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* GRID */
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .section-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .section-grid.full { grid-template-columns: 1fr; }
+  @media(max-width: 720px) {
+    .section-grid, .section-grid.three { grid-template-columns: 1fr; }
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--border2); }
+  .card-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* EXPERIENCE ITEMS */
+  .exp-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-item:first-child { padding-top: 0; }
+  .exp-dot {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+  .exp-body { flex: 1; }
+  .exp-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+  .exp-company {
+    font-size: 0.82rem;
+    color: var(--active);
+    margin-top: 0.1rem;
+    font-weight: 500;
+  }
+  .exp-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .exp-bullets {
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+  .exp-bullets li {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.5;
+    padding-left: 0.9rem;
+    position: relative;
+    margin-top: 0.2rem;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--active);
+    font-size: 0.7rem;
+    top: 2px;
+  }
+
+  /* SKILLS */
+  .skill-group { margin-bottom: 1rem; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group-name {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--active);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    font-size: 0.78rem;
+    padding: 0.28rem 0.65rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-weight: 400;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .tag:hover { border-color: var(--border2); background: rgba(255,255,255,0.07); }
+  .tag.highlight {
+    border-color: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    color: var(--active);
+    border-color: var(--active);
+  }
+
+  /* PROJECTS */
+  .project-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-item:first-child { padding-top: 0; }
+  .project-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .project-date {
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+    margin-bottom: 0.35rem;
+  }
+  .project-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* EDUCATION */
+  .edu-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:first-child { padding-top: 0; }
+  .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .edu-icon {
+    font-size: 1.1rem;
+    margin-top: 2px;
+  }
+  .edu-degree {
+    font-weight: 500;
+    font-size: 0.88rem;
+    line-height: 1.3;
+  }
+  .edu-school {
+    font-size: 0.8rem;
+    color: var(--active);
+    margin-top: 0.1rem;
+    font-weight: 500;
+  }
+  .edu-date {
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  /* CERTS */
+  .cert-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    transition: border-color 0.2s;
+  }
+  .cert-badge:last-child { margin-bottom: 0; }
+  .cert-badge:hover { border-color: var(--border2); }
+  .cert-icon { font-size: 1.1rem; }
+  .cert-name { font-size: 0.82rem; font-weight: 500; }
+  .cert-type { font-size: 0.72rem; color: var(--muted); }
+
+  /* LANGS */
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .lang-item:last-child { border-bottom: none; }
+  .lang-name { font-size: 0.88rem; font-weight: 500; }
+  .lang-level {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border2);
+    color: var(--muted);
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* Accent colors per profile */
+  [data-active="dev"] { --active: var(--accent-dev); --active-glow: var(--glow-dev); }
+  [data-active="cloud"] { --active: var(--accent-cloud); --active-glow: var(--glow-cloud); }
+  [data-active="sys"] { --active: var(--accent-sys); --active-glow: var(--glow-sys); }
+  [data-active="emb"] { --active: var(--accent-emb); --active-glow: var(--glow-emb); }
+
+  .section-gap { margin-bottom: 1.25rem; }
+</style>
 </head>
-<body>
+<body data-active="dev">
+<div class="glow-blob" id="glow"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="nav-logo">
-                MILI <span>WAJDI</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#profil">Profil</a></li>
-                <li><a href="#experience">Expérience</a></li>
-                <li><a href="#formations">Formations</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact">Contact</a></li>
+<div class="container">
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="avatar-wrapper" >
+          <div class="avatar" id="avatarDisplay">
+            <span id="avatarInitials"><img src="./wajdi.png" alt="wajdi.png"></span>
+          </div>
+          <div class="avatar-overlay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span>Photo</span>
+          </div>
+        </div>
+        <input type="file" id="avatarInput" accept="image/*">
+        <div class="name-block">
+          <h1>Mili Wajdi</h1>
+          <p>Ingénieur Informatique · Tunisie</p>
+        </div>
+      </div>
+      <div class="contacts">
+        <a href="mailto:wajdi.mili.engineer@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          wajdi.mili.engineer@gmail.com
+        </a>
+        <a href="tel:+21655193905">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.29 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +216 55 193 905
+        </a>
+        <a href="https://github.com/wajdi1122" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          github.com/wajdi1122
+        </a>
+        <a href="https://linkedin.com/in/wajdi-mili-0789b4206" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="profile-nav" id="profileNav">
+    <button class="nav-pill active" data-profile="dev" onclick="switchProfile('dev', this)">
+      <span class="dot"></span> Développeur Full Stack
+    </button>
+    <button class="nav-pill" data-profile="cloud" onclick="switchProfile('cloud', this)">
+      <span class="dot"></span> Cloud &amp; DevOps
+    </button>
+    <button class="nav-pill" data-profile="sys" onclick="switchProfile('sys', this)">
+      <span class="dot"></span> Systèmes &amp; Réseaux
+    </button>
+    <button class="nav-pill" data-profile="emb" onclick="switchProfile('emb', this)">
+      <span class="dot"></span> Embarqué &amp; IoT
+    </button>
+  </nav>
+
+  <!-- ==================== PROFILE: DEV ==================== -->
+  <div class="profile-panel active" id="panel-dev">
+    <div class="hero-banner">
+      <div class="hero-accent"></div>
+      <div class="hero-label">🧩 Profile </div>
+      <div class="hero-title">Ingénieur Full Stack Junior</div>
+      <p class="hero-desc">Développeur passionné, diplômé en ingénierie informatique spécialité Cloud Computing &amp; DevOps. Solide base en développement mobile Android (Java), backend Spring Boot, et compétences intermédiaires en Angular. Autonome, curieux et motivé.</p>
+    </div>
+
+    <div class="section-grid">
+      <!-- Experience -->
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-label">Expériences Professionnelles</div>
+        <div class="exp-item">
+          <div class="exp-dot">⚙️</div>
+          <div class="exp-body">
+            <div class="exp-title">Ingénieur DevOps</div>
+            <div class="exp-company">Iovision</div>
+            <div class="exp-date">02/2025 – 06/2025 · Sfax, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Déploiement complet d'une infrastructure AWS (ECS Fargate, RDS, ALB, IAM, VPC) avec Terraform</li>
+              <li>Application des principes IaC pour des déploiements modulaires, reproductibles et sécurisés</li>
             </ul>
+          </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <span class="badge badge-primary" style="margin-bottom: 1rem;">Disponible pour opportunités</span>
-                <h1>Ingénieur Cloud Computing & Virtualization</h1>
-                <h2>DevOps & Automatisation</h2>
-                <p>Ingénieur fraîchement diplômé passionné par les environnements cloud et l'automatisation. Spécialisé dans le déploiement d'infrastructures AWS, l'IaC avec Terraform et l'orchestration de conteneurs.</p>
-                
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Me Contacter</a>
-                    <a href="https://wajdi1122.github.io/cv-wajdi/" target="_blank" class="btn btn-secondary">
-                        <i class="fas fa-download" style="margin-right: 8px;"></i> Télécharger CV
-                    </a>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://github.com/wajdi1122" target="_blank" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github fa-lg"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/wajdi-mili-0789b4206" target="_blank" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin fa-lg"></i>
-                    </a>
-                    <a href="mailto:wajdi.mili.engineer@gmail.com" class="social-link" aria-label="Email">
-                        <i class="fas fa-envelope fa-lg"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="hero-image">
-                <img src="https://ui-avatars.com/api/?name=Wajdi+Mili&background=2563eb&color=fff&size=300" alt="Wajdi Mili">
-            </div>
+        <div class="exp-item">
+          <div class="exp-dot">📱</div>
+          <div class="exp-body">
+            <div class="exp-title">Développeur Mobile (Java)</div>
+            <div class="exp-company">CAEI DIGITAL MOOV</div>
+            <div class="exp-date">09/2024 – 10/2024 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Développement complet d'une application de chat avec interface moderne</li>
+              <li>Gestion des utilisateurs, envoi/réception de messages, et recherche intégrée</li>
+              <li>Communication via API REST (PHP + MySQL)</li>
+            </ul>
+          </div>
         </div>
-    </section>
-
-    <!-- Profile Section -->
-    <section id="profil" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Mon Profil</h2>
-                <p>Un aperçu de mon parcours et de mes qualifications</p>
-            </div>
-
-            <div class="grid grid-2">
-                <div class="profile-card">
-                    <h3>À Propos</h3>
-                    <p>Ingénieur fraîchement diplômé en Cloud Computing, Virtualisation et DevOps, je suis passionné par la conception d'architectures résilientes et l'automatisation des processus. Mon projet de fin d'études sur l'automatisation AWS ECS Fargate avec Terraform a consolidé mon expertise en Infrastructure as Code.</p>
-                    <p>Je suis motivé à intégrer une équipe innovante pour mettre en pratique mes compétences techniques et contribuer à des projets d'envergure.</p>
-                    
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div>
-                                <h4>Localisation</h4>
-                                <p style="margin:0">Mornaguia, Manouba, Tunisie</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h4>Email</h4>
-                                <p style="margin:0">wajdi.mili.engineer@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid" style="gap: 1.5rem; align-content: start;">
-                    <div class="profile-card">
-                        <h3><i class="fas fa-globe" style="color: var(--primary); margin-right: 10px;"></i> Langues</h3>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
-                            <span>Français</span>
-                            <span class="badge badge-accent">B2</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>Anglais</span>
-                            <span class="badge badge-accent">B2</span>
-                        </div>
-                    </div>
-
-                    <div class="profile-card">
-                        <h3><i class="fas fa-certificate" style="color: var(--primary); margin-right: 10px;"></i> Certifications</h3>
-                        <div style="display: flex; flex-direction: column; gap: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-medal" style="color: #eab308;"></i>
-                                <span>Azure AZ-900: Microsoft Azure Fundamentals</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <i class="fas fa-medal" style="color: #eab308;"></i>
-                                <span>Introduction to IoT 2.0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="exp-item">
+          <div class="exp-dot">🌐</div>
+          <div class="exp-body">
+            <div class="exp-title">Web Developer</div>
+            <div class="exp-company">Développeur Web</div>
+            <div class="exp-date">06/2023 – 07/2023 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Conception et développement d'une application web commerciale pour une agence de voyage, basée sur Angular</li>
+            </ul>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section" style="background-color: var(--bg-surface-alt);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Expérience Professionnelle</h2>
-                <p>Mon parcours technique en entreprise</p>
-            </div>
-
-            <div class="timeline">
-                <!-- Job 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-role">Ingénieur DevOps</div>
-                                <div class="timeline-company">Iovision</div>
-                            </div>
-                            <span class="badge badge-primary">Fév 2025 - Juin 2025</span>
-                        </div>
-                        <p class="timeline-date"><i class="fas fa-map-marker-alt"></i> Sfax, Tunisie</p>
-                        <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-muted);">
-                            <li>Déploiement complet d'une infrastructure AWS (ECS Fargate, RDS, ALB, IAM, VPC) avec Terraform.</li>
-                            <li>Application des principes IaC pour un déploiement modulaire, reproductible et sécurisé.</li>
-                            <li>Intégration CloudWatch, SQS, SNS pour monitoring et notifications.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-role">Développeur Mobile (Java)</div>
-                                <div class="timeline-company">CAEI DIGITAL MOOV</div>
-                            </div>
-                            <span class="badge badge-outline">Sep 2024 - Oct 2024</span>
-                        </div>
-                        <p class="timeline-date"><i class="fas fa-map-marker-alt"></i> Tunis, Tunisie</p>
-                        <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-muted);">
-                            <li>Développement d'une application Android pour la gestion de demandes internes.</li>
-                            <li>Création d'une interface intuitive pour la soumission numérique.</li>
-                            <li>Optimisation de l'expérience utilisateur et de l'accessibilité mobile.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <div>
-                                <div class="timeline-role">Développeur Web</div>
-                                <div class="timeline-company">Aloujour Tourism</div>
-                            </div>
-                            <span class="badge badge-outline">Juin 2023 - Juil 2023</span>
-                        </div>
-                        <p class="timeline-date"><i class="fas fa-map-marker-alt"></i> Tunis, Tunisie</p>
-                        <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-muted);">
-                            <li>Conception d'un site commercial pour agence de voyages avec Angular.</li>
-                            <li>Développement d'une interface utilisateur moderne et responsive.</li>
-                            <li>Intégration des fonctionnalités de réservation en ligne.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="section-grid">
+      <!-- Skills -->
+      <div class="card">
+        <div class="card-label">Compétences Techniques</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Mobile</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Android (Java)</span>
+            <span class="tag">XML</span>
+            <span class="tag">Retrofit</span>
+            <span class="tag">Firebase</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="formations" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Formations</h2>
-                <p>Mon parcours académique</p>
-            </div>
-
-            <div class="grid grid-3">
-                <div class="education-card">
-                    <div class="edu-icon">🎓</div>
-                    <h4>Diplôme National d'Ingénieur</h4>
-                    <p style="color: var(--primary); font-weight: 600;">Informatique</p>
-                    <p>Iteam University</p>
-                    <p class="timeline-date">Sep 2022 - Juil 2025</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="edu-icon">📜</div>
-                    <h4>Diplôme Appliqué</h4>
-                    <p style="color: var(--primary); font-weight: 600;">Informatique</p>
-                    <p>ISET Kairouan</p>
-                    <p class="timeline-date">Déc 2018 - Juin 2021</p>
-                </div>
-
-                <div class="education-card">
-                    <div class="edu-icon">🏫</div>
-                    <h4>Baccalauréat</h4>
-                    <p style="color: var(--primary); font-weight: 600;">Section Technique</p>
-                    <p>Farabi Mornaguia</p>
-                    <p class="timeline-date">Sep 2014 - Juin 2018</p>
-                </div>
-            </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Backend</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Spring Boot</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Hibernate</span>
+            <span class="tag">MySQL</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="competences" class="section" style="background-color: var(--bg-surface-alt);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Compétences Techniques</h2>
-                <p>Ma stack technologique et mes outils</p>
-            </div>
-
-            <div class="grid grid-3">
-                <!-- Cloud -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-cloud" style="color: var(--primary);"></i> Infrastructure Cloud</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag"><i class="fab fa-aws"></i> AWS</span>
-                        <span class="skill-tag"><i class="fab fa-microsoft"></i> Azure</span>
-                        <span class="skill-tag"><i class="fas fa-server"></i> OpenStack</span>
-                    </div>
-                </div>
-
-                <!-- Automation -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-robot" style="color: var(--accent);"></i> Automatisation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Ansible</span>
-                        <span class="skill-tag">Puppet</span>
-                    </div>
-                </div>
-
-                <!-- Containers -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-box" style="color: var(--primary);"></i> Conteneurs</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">OpenShift</span>
-                    </div>
-                </div>
-
-                <!-- Systems -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-desktop" style="color: var(--text-muted);"></i> Systèmes</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag"><i class="fab fa-linux"></i> Linux</span>
-                        <span class="skill-tag"><i class="fab fa-windows"></i> Windows</span>
-                        <span class="skill-tag">VMware</span>
-                    </div>
-                </div>
-
-                <!-- Dev -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-code" style="color: var(--accent);"></i> Développement</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag"><i class="fab fa-java"></i> Spring Boot</span>
-                        <span class="skill-tag"><i class="fab fa-angular"></i> Angular</span>
-                        <span class="skill-tag"><i class="fab fa-laravel"></i> Laravel</span>
-                        <span class="skill-tag"><i class="fab fa-android"></i> Android</span>
-                    </div>
-                </div>
-
-                <!-- Databases -->
-                <div class="skill-category">
-                    <h3><i class="fas fa-database" style="color: var(--primary);"></i> Bases de Données</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">Oracle</span>
-                        <span class="skill-tag">Firebase</span>
-                    </div>
-                </div>
-            </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Frontend</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Angular</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projets" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Projets Réalisés</h2>
-                <p>Sélection de projets académiques et personnels</p>
-            </div>
-
-            <div class="grid grid-3">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">☁️</div>
-                        <span class="badge badge-primary">Nov 2024</span>
-                    </div>
-                    <div class="project-body">
-                        <h4>Plateforme Cloud Privé</h4>
-                        <p>Déploiement et configuration d'une plateforme de cloud privé utilisant OpenStack et automatisé avec Ansible.</p>
-                        <div class="project-tech-stack">
-                            <span class="badge badge-outline">OpenStack</span>
-                            <span class="badge badge-outline">Ansible</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">📊</div>
-                        <span class="badge badge-accent">Oct 2024</span>
-                    </div>
-                    <div class="project-body">
-                        <h4>Monitoring Infrastructure</h4>
-                        <p>Mise en place d'une solution de surveillance complète avec la stack ELK et Prometheus-Grafana.</p>
-                        <div class="project-tech-stack">
-                            <span class="badge badge-outline">ELK</span>
-                            <span class="badge badge-outline">Grafana</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🔄</div>
-                        <span class="badge badge-primary">Oct 2024</span>
-                    </div>
-                    <div class="project-body">
-                        <h4>CI/CD Pipeline</h4>
-                        <p>Implémentation d'un pipeline d'intégration et de déploiement continu utilisant Jenkins et Docker.</p>
-                        <div class="project-tech-stack">
-                            <span class="badge badge-outline">Jenkins</span>
-                            <span class="badge badge-outline">Docker</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🔐</div>
-                        <span class="badge badge-accent">2024</span>
-                    </div>
-                    <div class="project-body">
-                        <h4>Gestion Clés Chiffrement</h4>
-                        <p>Virtualisation de la gestion des clés de chiffrement avec intégration Arduino et conteneurisation.</p>
-                        <div class="project-tech-stack">
-                            <span class="badge badge-outline">Arduino</span>
-                            <span class="badge badge-outline">Docker</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">🏠</div>
-                        <span class="badge badge-primary">2023</span>
-                    </div>
-                    <div class="project-body">
-                        <h4>Maison Intelligente</h4>
-                        <p>Système IoT complet pour la domotique utilisant Laravel pour le backend et Android pour le contrôle.</p>
-                        <div class="project-tech-stack">
-                            <span class="badge badge-outline">IoT</span>
-                            <span class="badge badge-outline">Laravel</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">⚙️</div>
-                        <span class="badge badge-accent">Jan 2024</span>
-                    </div>
-                    <div class="project-body">
-                        <h4>Cluster Kubernetes</h4>
-                        <p>Déploiement et administration d'un cluster Kubernetes léger utilisant la distribution K3s.</p>
-                        <div class="project-tech-stack">
-                            <span class="badge badge-outline">K3s</span>
-                            <span class="badge badge-outline">Kubernetes</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Outils</div>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">GitLab</span>
+            <span class="tag">Maven</span>
+            <span class="tag">Gradle</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section" style="background-color: var(--bg-surface-alt);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Me Contacter</h2>
-                <p>Discutons de vos projets et opportunités</p>
-            </div>
-
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div style="margin-bottom: 2rem;">
-                        <h3>Coordonnées</h3>
-                        <p>N'hésitez pas à me contacter pour toute opportunité de collaboration.</p>
-                    </div>
-
-                    <div class="info-item" style="margin-bottom: 1.5rem;">
-                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <h4>Email</h4>
-                            <p style="margin:0">wajdi.mili.engineer@gmail.com</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item" style="margin-bottom: 1.5rem;">
-                        <div class="info-icon"><i class="fas fa-phone"></i></div>
-                        <div>
-                            <h4>Téléphone</h4>
-                            <p style="margin:0">55193905</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item" style="margin-bottom: 1.5rem;">
-                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div>
-                            <h4>Localisation</h4>
-                            <p style="margin:0">Mornaguia, Manouba, Tunisie</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <form onsubmit="event.preventDefault(); alert('Merci pour votre message ! (Démo uniquement)');">
-                        <div class="form-group">
-                            <label for="name">Nom complet</label>
-                            <input type="text" id="name" class="form-control" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="votre@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" rows="5" placeholder="Votre message..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer le Message</button>
-                    </form>
-                </div>
-            </div>
+        <div class="skill-group">
+          <div class="skill-group-name">DevOps / Cloud</div>
+          <div class="skill-tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">AWS</span>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <h3>MILI WAJDI</h3>
-                    <p>Ingénieur Cloud Computing & DevOps</p>
-                    <div class="social-links" style="margin-top: 1rem;">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4>Liens Rapides</h4>
-                    <ul style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#experience">Expérience</a></li>
-                        <li><a href="#projets">Projets</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <ul style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-muted);">
-                        <li>wajdi.mili.engineer@gmail.com</li>
-                        <li>Tunisie</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 MILI WAJDI. Tous droits réservés.</p>
-            </div>
+      <!-- Projects -->
+      <div class="card">
+        <div class="card-label">Projets</div>
+        <div class="project-item">
+          <div class="project-name">Gestion des employés (Spring Boot + Angular)</div>
+          <div class="project-date">09/2024 – 12/2024</div>
+          <div class="project-desc">Backend API REST sécurisée + interface Angular responsive. CRUD complet (employés, départements, salaires).</div>
         </div>
-    </footer>
+        <div class="project-item">
+          <div class="project-name">Smart Home – Laravel, Android, Arduino</div>
+          <div class="project-date">02/2024 – 05/2024</div>
+          <div class="project-desc">Système domotique intégrant une app Android pour le contrôle à distance, backend Firebase connecté à des capteurs Arduino.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Web App de gestion de location de voitures</div>
+          <div class="project-date">02/2024</div>
+          <div class="project-desc">Application mobile Android pour la gestion complète des voitures de location (ajout, réservation, suivi, disponibilité).</div>
+        </div>
+      </div>
+    </div>
 
+    <div class="section-grid three">
+      <!-- Education -->
+      <div class="card">
+        <div class="card-label">Formation</div>
+        <div class="edu-item">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-degree">Diplôme national d'ingénieur en informatique</div>
+            <div class="edu-school">Iteam University</div>
+            <div class="edu-date">09/2022 – 07/2025 · Tunis</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon">📘</div>
+          <div>
+            <div class="edu-degree">Licence appliquée en informatique</div>
+            <div class="edu-school">ISET Kairouan</div>
+            <div class="edu-date">12/2018 – 06/2021 · Kairouan</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon">📜</div>
+          <div>
+            <div class="edu-degree">Baccalauréat technique</div>
+            <div class="edu-school">Farabi Mornaguia</div>
+            <div class="edu-date">09/2014 – 06/2018</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="card">
+        <div class="card-label">Certifications</div>
+        <div class="cert-badge"><div class="cert-icon">☁️</div><div><div class="cert-name">Azure AZ-900</div><div class="cert-type">Microsoft Azure Fundamentals</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🔱</div><div><div class="cert-name">OCI DevOps Pro 2025</div><div class="cert-type">Oracle Cloud Infrastructure</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🌐</div><div><div class="cert-name">Introduction to IoT</div><div class="cert-type">Certification IoT</div></div></div>
+      </div>
+
+      <!-- Languages -->
+      <div class="card">
+        <div class="card-label">Langues &amp; Profil</div>
+        <div class="lang-item"><span class="lang-name">🇫🇷 Français</span><span class="lang-level">B2</span></div>
+        <div class="lang-item"><span class="lang-name">🇬🇧 Anglais</span><span class="lang-level">B2</span></div>
+        <div class="lang-item"><span class="lang-name">🇹🇳 Arabe</span><span class="lang-level">Natif</span></div>
+        <div style="margin-top:1rem;">
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.08em;">Méthodologies</div>
+          <div class="skill-tags">
+            <span class="tag">Agile / Scrum</span>
+            <span class="tag">MVC</span>
+            <span class="tag">RESTful API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-dev -->
+
+  <!-- ==================== PROFILE: CLOUD ==================== -->
+  <div class="profile-panel" id="panel-cloud">
+    <div class="hero-banner">
+      <div class="hero-accent"></div>
+      <div class="hero-label">☁️ Profile</div>
+      <div class="hero-title">Ingénieur Cloud &amp; DevOps</div>
+      <p class="hero-desc">Maîtrise d'AWS, Terraform, Kubernetes, CI/CD et l'automatisation. Expérience pratique dans la conception et le déploiement d'infrastructures cloud évolutives, avec une passion pour l'optimisation cloud et la fiabilité des systèmes.</p>
+    </div>
+
+    <div class="section-grid">
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-label">Expériences Professionnelles</div>
+        <div class="exp-item">
+          <div class="exp-dot">☁️</div>
+          <div class="exp-body">
+            <div class="exp-title">Ingénieur DevOps</div>
+            <div class="exp-company">Iovision</div>
+            <div class="exp-date">02/2025 – 06/2025 · Sfax, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Déploiement complet d'une infrastructure AWS (ECS Fargate, RDS, ALB, IAM, VPC) avec Terraform</li>
+              <li>Application des principes IaC pour des déploiements modulaires, reproductibles et sécurisés</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot">📱</div>
+          <div class="exp-body">
+            <div class="exp-title">Développeur Mobile (Java)</div>
+            <div class="exp-company">CAEI DIGITAL MOOV</div>
+            <div class="exp-date">09/2024 – 10/2024 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Développement d'une application Android pour la gestion des demandes internes des employés</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot">🌐</div>
+          <div class="exp-body">
+            <div class="exp-title">Web Developer</div>
+            <div class="exp-company">Développeur Web</div>
+            <div class="exp-date">06/2023 – 07/2023 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Création d'un site web commercial pour une agence de voyage avec Angular</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-grid">
+      <div class="card">
+        <div class="card-label">Compétences Cloud &amp; DevOps</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Cloud</div>
+          <div class="skill-tags">
+            <span class="tag highlight">AWS</span>
+            <span class="tag highlight">Azure</span>
+            <span class="tag">Oracle Cloud (OCI)</span>
+            <span class="tag">OpenStack</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Conteneurs &amp; Orchestration</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Docker</span>
+            <span class="tag highlight">Kubernetes</span>
+            <span class="tag">OpenShift</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Automatisation</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Terraform</span>
+            <span class="tag">Ansible</span>
+            <span class="tag">Puppet</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Virtualisation</div>
+          <div class="skill-tags">
+            <span class="tag">Docker Desktop</span>
+            <span class="tag">VirtualBox</span>
+            <span class="tag">VMware</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Frameworks</div>
+          <div class="skill-tags">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Angular</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">Flask</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Projets DevOps &amp; Cloud</div>
+        <div class="project-item">
+          <div class="project-name">Plateforme Cloud Privé (OpenStack)</div>
+          <div class="project-date">09/2024 – 12/2024</div>
+          <div class="project-desc">Conception et déploiement d'un cloud privé avec OpenStack et conteneurs, incluant un provisioning automatisé.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Supervision ELK &amp; Prometheus-Grafana</div>
+          <div class="project-date">10/2024</div>
+          <div class="project-desc">Centralisation des logs et monitoring avec ELK Stack et Prometheus-Grafana.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Script Ansible – Serveur Web Complet</div>
+          <div class="project-date">02/2024</div>
+          <div class="project-desc">Automatisation du déploiement d'une pile serveur web avec Ansible.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Kubernetes Cluster avec K3s</div>
+          <div class="project-date">01/2024</div>
+          <div class="project-desc">Déploiement d'un cluster Kubernetes léger avec K3s pour l'orchestration de conteneurs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-grid three">
+      <div class="card">
+        <div class="card-label">Formation</div>
+        <div class="edu-item">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-degree">Diplôme national d'ingénieur en informatique</div>
+            <div class="edu-school">Iteam University</div>
+            <div class="edu-date">09/2022 – 07/2025 · Tunis</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon">📘</div>
+          <div>
+            <div class="edu-degree">Licence appliquée en informatique</div>
+            <div class="edu-school">ISET Kairouan</div>
+            <div class="edu-date">12/2018 – 06/2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Certifications</div>
+        <div class="cert-badge"><div class="cert-icon">🔴</div><div><div class="cert-name">RHCSA</div><div class="cert-type">Red Hat Certified System Admin</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">☁️</div><div><div class="cert-name">Azure AZ-900</div><div class="cert-type">Microsoft Azure Fundamentals</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🔱</div><div><div class="cert-name">OCI DevOps Pro 2025</div><div class="cert-type">Oracle Cloud Infrastructure</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🌐</div><div><div class="cert-name">Introduction to IoT</div></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Systèmes &amp; Réseaux</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Systèmes</div>
+          <div class="skill-tags"><span class="tag highlight">Linux</span><span class="tag">Windows</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Réseau</div>
+          <div class="skill-tags"><span class="tag">VPC</span><span class="tag">Packet Tracer</span><span class="tag">GNS3</span><span class="tag">Windows Server</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Bases de données</div>
+          <div class="skill-tags"><span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">Firebase</span><span class="tag">PL/SQL</span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-cloud -->
+
+  <!-- ==================== PROFILE: SYS ==================== -->
+  <div class="profile-panel" id="panel-sys">
+    <div class="hero-banner">
+      <div class="hero-accent"></div>
+      <div class="hero-label">🖥️ Profile</div>
+      <div class="hero-title">Technicien Systèmes &amp; Réseaux</div>
+      <p class="hero-desc">Technicien informatique spécialisé en systèmes et réseaux avec une solide formation en administration Linux et Windows. Motivé, rigoureux et capable d'assurer l'installation, la maintenance et le support des infrastructures informatiques.</p>
+    </div>
+
+    <div class="section-grid">
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-label">Expériences Professionnelles</div>
+        <div class="exp-item">
+          <div class="exp-dot">☁️</div>
+          <div class="exp-body">
+            <div class="exp-title">Ingénieur DevOps</div>
+            <div class="exp-company">Iovision</div>
+            <div class="exp-date">02/2025 – 06/2025 · Sfax, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Déploiement complet d'une infrastructure AWS (ECS Fargate, RDS, ALB, IAM, VPC) avec Terraform</li>
+              <li>Application des principes IaC pour des déploiements modulaires, reproductibles et sécurisés</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot">📱</div>
+          <div class="exp-body">
+            <div class="exp-title">Développeur Mobile (Java)</div>
+            <div class="exp-company">CAEI DIGITAL MOOV</div>
+            <div class="exp-date">09/2024 – 10/2024 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Développement d'une application Android pour la gestion des demandes internes des employés</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot">🌐</div>
+          <div class="exp-body">
+            <div class="exp-title">Web Developer</div>
+            <div class="exp-company">Développeur Web</div>
+            <div class="exp-date">06/2023 – 07/2023 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Création d'un site web commercial pour une agence de voyage avec Angular</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-grid">
+      <div class="card">
+        <div class="card-label">Compétences Systèmes &amp; Réseaux</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Systèmes</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Linux (Ubuntu, RedHat)</span>
+            <span class="tag">Windows</span>
+            <span class="tag">Windows Server</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Réseaux</div>
+          <div class="skill-tags">
+            <span class="tag highlight">TCP/IP</span>
+            <span class="tag">VPC</span>
+            <span class="tag">Packet Tracer</span>
+            <span class="tag">GNS3</span>
+            <span class="tag">Config réseau</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Virtualisation</div>
+          <div class="skill-tags">
+            <span class="tag">Docker</span>
+            <span class="tag">VirtualBox</span>
+            <span class="tag">VMware</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Cloud</div>
+          <div class="skill-tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Azure</span>
+            <span class="tag">OCI</span>
+            <span class="tag">OpenStack</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Frameworks</div>
+          <div class="skill-tags">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Angular</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">Flask</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Projets Infrastructure</div>
+        <div class="project-item">
+          <div class="project-name">Plateforme Cloud Privé (OpenStack)</div>
+          <div class="project-date">09/2024 – 12/2024</div>
+          <div class="project-desc">Conception et déploiement d'un cloud privé avec OpenStack et conteneurs, incluant un provisioning automatisé.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Supervision ELK &amp; Prometheus-Grafana</div>
+          <div class="project-date">10/2024</div>
+          <div class="project-desc">Centralisation des logs et monitoring avec ELK Stack et Prometheus-Grafana.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Virtualisation Clés de Chiffrement – Arduino</div>
+          <div class="project-date">02/2024 – 05/2024</div>
+          <div class="project-desc">Système conteneurisé pour la gestion des clés de chiffrement, intégré avec des cartes Arduino.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Script Ansible – Serveur Web</div>
+          <div class="project-date">02/2024</div>
+          <div class="project-desc">Automatisation du déploiement d'une pile serveur web avec Ansible.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Kubernetes Cluster avec K3s</div>
+          <div class="project-date">01/2024</div>
+          <div class="project-desc">Déploiement d'un cluster Kubernetes léger avec K3s pour l'orchestration de conteneurs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-grid three">
+      <div class="card">
+        <div class="card-label">Formation</div>
+        <div class="edu-item">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-degree">Diplôme national d'ingénieur en informatique</div>
+            <div class="edu-school">Iteam University</div>
+            <div class="edu-date">09/2022 – 07/2025 · Tunis</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon">📘</div>
+          <div>
+            <div class="edu-degree">Licence appliquée en informatique</div>
+            <div class="edu-school">ISET Kairouan</div>
+            <div class="edu-date">12/2018 – 06/2021</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon">📜</div>
+          <div>
+            <div class="edu-degree">Baccalauréat technique</div>
+            <div class="edu-school">Farabi Mornaguia</div>
+            <div class="edu-date">09/2014 – 06/2018</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Certifications</div>
+        <div class="cert-badge"><div class="cert-icon">🔴</div><div><div class="cert-name">RHCSA</div><div class="cert-type">Red Hat Certified System Admin</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">☁️</div><div><div class="cert-name">Azure AZ-900</div><div class="cert-type">Microsoft</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🔱</div><div><div class="cert-name">OCI DevOps Pro 2025</div><div class="cert-type">Oracle Cloud</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🌐</div><div><div class="cert-name">Introduction to IoT</div></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Langues &amp; Bases de données</div>
+        <div class="lang-item"><span class="lang-name">🇫🇷 Français</span><span class="lang-level">B2</span></div>
+        <div class="lang-item"><span class="lang-name">🇬🇧 Anglais</span><span class="lang-level">B2</span></div>
+        <div style="margin-top:1rem;">
+          <div class="skill-group-name">Bases de données</div>
+          <div class="skill-tags">
+            <span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">Firebase</span><span class="tag">SQL</span><span class="tag">PL/SQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-sys -->
+
+  <!-- ==================== PROFILE: EMB ==================== -->
+  <div class="profile-panel" id="panel-emb">
+    <div class="hero-banner">
+      <div class="hero-accent"></div>
+      <div class="hero-label">🔌 Profile</div>
+      <div class="hero-title">Ingénieur Embarqué &amp; IoT</div>
+      <p class="hero-desc">Ingénieur orienté systèmes embarqués et IoT, avec des compétences en développement logiciel, virtualisation et intégration de systèmes connectés. Expérience dans la mise en place de solutions combinant matériel (Arduino) et logiciels, ainsi que dans l'automatisation et le déploiement d'environnements techniques.</p>
+    </div>
+
+    <div class="section-grid">
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-label">Expériences Professionnelles</div>
+        <div class="exp-item">
+          <div class="exp-dot">🔌</div>
+          <div class="exp-body">
+            <div class="exp-title">Ingénieur DevOps / IoT</div>
+            <div class="exp-company">Iovision</div>
+            <div class="exp-date">02/2025 – 06/2025 · Sfax, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Déploiement d'infrastructures cloud pour supporter des applications connectées (IoT)</li>
+              <li>Mise en place d'environnements automatisés pour le traitement et la gestion de données issues de systèmes embarqués</li>
+              <li>Utilisation de Terraform et AWS pour assurer la scalabilité et la disponibilité des services</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot">📱</div>
+          <div class="exp-body">
+            <div class="exp-title">Développeur Mobile (Java)</div>
+            <div class="exp-company">CAEI DIGITAL MOOV</div>
+            <div class="exp-date">09/2024 – 10/2024 · Tunis, Tunisie</div>
+            <ul class="exp-bullets">
+              <li>Développement d'une application Android connectée à des APIs REST</li>
+              <li>Traitement et affichage de données dynamiques côté client</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-grid">
+      <div class="card">
+        <div class="card-label">Compétences Embarqué &amp; IoT</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Systèmes embarqués &amp; IoT</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Arduino</span>
+            <span class="tag highlight">Communication capteurs</span>
+            <span class="tag">Électronique embarquée</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Programmation</div>
+          <div class="skill-tags">
+            <span class="tag highlight">C/C++</span>
+            <span class="tag highlight">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">Bash</span>
+            <span class="tag">PHP</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Conteneurs &amp; Cloud</div>
+          <div class="skill-tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">OpenShift</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Terraform</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Frameworks</div>
+          <div class="skill-tags">
+            <span class="tag">Android SDK</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Angular</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">Flask</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Projets IoT &amp; Embarqués</div>
+        <div class="project-item">
+          <div class="project-name">Virtualisation Clés de Chiffrement – Arduino &amp; Conteneurs</div>
+          <div class="project-date">02/2024 – 05/2024</div>
+          <div class="project-desc">Système conteneurisé pour la gestion des clés de chiffrement, intégré avec des cartes Arduino.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">SmartGuard IoT System</div>
+          <div class="project-date">02/2024 – 03/2024</div>
+          <div class="project-desc">Système de surveillance intelligent basé sur capteurs IoT — détection d'événements avec notifications temps réel, supervision via interface mobile connectée.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">SmartHome IoT Control System</div>
+          <div class="project-date">10/2023 – 01/2024</div>
+          <div class="project-desc">Système domotique avec capteurs et actionneurs Arduino + app Android Java. Firebase pour la gestion des données en temps réel.</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">IoT Car Rent Platform</div>
+          <div class="project-date">10/2023 – 01/2024</div>
+          <div class="project-desc">Système de location de véhicules intelligent avec accès QR Code, synchronisation Firebase pour le contrôle et le suivi des utilisateurs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-grid three">
+      <div class="card">
+        <div class="card-label">Formation</div>
+        <div class="edu-item">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-degree">Diplôme national d'ingénieur en informatique</div>
+            <div class="edu-school">Iteam University</div>
+            <div class="edu-date">09/2022 – 07/2025 · Tunis</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-icon">📘</div>
+          <div>
+            <div class="edu-degree">Licence appliquée en informatique</div>
+            <div class="edu-school">ISET Kairouan</div>
+            <div class="edu-date">12/2018 – 06/2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Certifications</div>
+        <div class="cert-badge"><div class="cert-icon">🔴</div><div><div class="cert-name">RHCSA</div><div class="cert-type">Red Hat Certified System Admin</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">☁️</div><div><div class="cert-name">Azure AZ-900</div><div class="cert-type">Microsoft</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🔱</div><div><div class="cert-name">OCI DevOps Pro 2025</div><div class="cert-type">Oracle Cloud</div></div></div>
+        <div class="cert-badge"><div class="cert-icon">🌐</div><div><div class="cert-name">Introduction to IoT</div></div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Systèmes &amp; Réseaux</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Systèmes</div>
+          <div class="skill-tags"><span class="tag highlight">Linux</span><span class="tag">Windows</span></div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Réseau</div>
+          <div class="skill-tags"><span class="tag">VPC</span><span class="tag">GNS3</span><span class="tag">Packet Tracer</span></div>
+        </div>
+        <div style="margin-top:0.75rem;">
+          <div class="lang-item"><span class="lang-name">🇫🇷 Français</span><span class="lang-level">B2</span></div>
+          <div class="lang-item"><span class="lang-name">🇬🇧 Anglais</span><span class="lang-level">B2</span></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-emb -->
+
+  <footer>
+    <p>Mili Wajdi · wajdi.mili.engineer@gmail.com · +216 55 193 905 · Mornaguia, Manouba, Tunisia</p>
+  </footer>
+</div>
+
+<script>
+  const glowColors = {
+    dev: '#4f8ef7',
+    cloud: '#34d5a3',
+    sys: '#f5a623',
+    emb: '#c77dff'
+  };
+  const glowPos = {
+    dev: { top: '-150px', left: '-150px' },
+    cloud: { top: '-150px', left: '50%' },
+    sys: { top: '30%', left: '-150px' },
+    emb: { top: '30%', left: '50%' }
+  };
+
+  document.getElementById('avatarInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const display = document.getElementById('avatarDisplay');
+      display.innerHTML = '<img src="' + ev.target.result + '" alt="Photo de profil">';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function switchProfile(profile, btn) {
+    document.querySelectorAll('.profile-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + profile).classList.add('active');
+    btn.classList.add('active');
+    document.body.setAttribute('data-active', profile);
+    const glow = document.getElementById('glow');
+    glow.style.background = glowColors[profile];
+    glow.style.top = glowPos[profile].top;
+    glow.style.left = glowPos[profile].left;
+  }
+</script>
 </body>
 </html>
