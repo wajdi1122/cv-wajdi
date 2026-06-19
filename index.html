@@ -7,31 +7,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0c10;
-    --surface: #111318;
-    --surface2: #181b22;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
+    --bg: #080b12;
+    --surface: rgba(18, 23, 34, 0.82);
+    --surface2: rgba(26, 33, 47, 0.92);
+    --surface3: rgba(255,255,255,0.045);
+    --border: rgba(255,255,255,0.09);
+    --border2: rgba(255,255,255,0.18);
     --text: #f0f2f7;
-    --muted: #8892a4;
-    --accent-dev: #4f8ef7;
-    --accent-cloud: #34d5a3;
-    --accent-sys: #f5a623;
-    --accent-emb: #c77dff;
-    --glow-dev: rgba(79,142,247,0.15);
-    --glow-cloud: rgba(52,213,163,0.15);
-    --glow-sys: rgba(245,166,35,0.15);
-    --glow-emb: rgba(199,125,255,0.15);
+    --muted: #a5afc2;
+    --soft: #d8deea;
+    --accent-dev: #5b9dff;
+    --accent-cloud: #36d399;
+    --accent-sys: #ffb84d;
+    --accent-emb: #b889ff;
+    --glow-dev: rgba(91,157,255,0.18);
+    --glow-cloud: rgba(54,211,153,0.18);
+    --glow-sys: rgba(255,184,77,0.17);
+    --glow-emb: rgba(184,137,255,0.18);
     --active: var(--accent-dev);
     --active-glow: var(--glow-dev);
+    --shadow: 0 24px 80px rgba(0,0,0,0.34);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: var(--bg);
+    background:
+      radial-gradient(circle at top left, rgba(91,157,255,0.16), transparent 36rem),
+      radial-gradient(circle at 85% 10%, rgba(54,211,153,0.11), transparent 34rem),
+      linear-gradient(180deg, #0a0f1d 0%, var(--bg) 44%, #070911 100%);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    line-height: 1.5;
   }
 
   /* BG GRID */
@@ -40,9 +47,10 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 78%);
     pointer-events: none;
     z-index: 0;
   }
@@ -66,22 +74,28 @@
   .container {
     position: relative;
     z-index: 1;
-    max-width: 1100px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
   /* HEADER */
   header {
-    padding: 3rem 0 2rem;
+    padding: 2rem 0 1.25rem;
     position: relative;
   }
   .header-inner {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: 2rem;
     flex-wrap: wrap;
+    padding: 1.15rem;
+    background: rgba(8, 12, 20, 0.58);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
   }
   .brand {
     display: flex;
@@ -90,16 +104,16 @@
   }
   .avatar-wrapper {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 86px;
+    height: 86px;
     flex-shrink: 0;
     cursor: pointer;
   }
   .avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4f8ef7, #c77dff);
+    width: 86px;
+    height: 86px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--active), #ffffff 160%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,15 +122,17 @@
     font-size: 1.4rem;
     color: white;
     flex-shrink: 0;
-    border: 2px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
     overflow: hidden;
-    transition: border-color 0.2s;
+    box-shadow: 0 18px 34px var(--active-glow);
+    transition: border-color 0.2s, transform 0.2s;
   }
+  .avatar-wrapper:hover .avatar { transform: translateY(-2px); }
   .avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 20px;
   }
   .avatar-overlay {
     position: absolute;
@@ -145,7 +161,7 @@
   .name-block h1 {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     letter-spacing: -0.03em;
     line-height: 1;
   }
@@ -158,30 +174,47 @@
   }
   .contacts {
     display: flex;
-    gap: 1rem;
+    gap: 0.65rem;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-end;
+    max-width: 520px;
   }
   .contacts a {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem;
-    color: var(--muted);
+    font-size: 0.78rem;
+    color: var(--soft);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+    padding: 0.48rem 0.68rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.035);
   }
-  .contacts a:hover { color: var(--text); }
+  .contacts a:hover {
+    color: var(--text);
+    border-color: var(--border2);
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-1px);
+  }
   .contacts a svg { width: 14px; height: 14px; flex-shrink: 0; }
 
   /* NAV PILLS */
   .profile-nav {
     display: flex;
-    gap: 0.5rem;
-    margin: 2rem 0;
+    gap: 0.55rem;
+    margin: 1rem 0 1.5rem;
     flex-wrap: wrap;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0;
+    padding: 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: rgba(8, 12, 20, 0.52);
+    backdrop-filter: blur(16px);
+    position: sticky;
+    top: 0.75rem;
+    z-index: 5;
   }
   .nav-pill {
     position: relative;
@@ -192,14 +225,13 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
     font-weight: 500;
-    border: none;
+    border: 1px solid transparent;
     background: transparent;
-    color: var(--muted);
+    color: var(--soft);
     cursor: pointer;
-    border-radius: 8px 8px 0 0;
-    transition: color 0.2s, background 0.2s;
+    border-radius: 12px;
+    transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.2s;
     letter-spacing: 0.01em;
-    bottom: -1px;
   }
   .nav-pill .dot {
     width: 8px; height: 8px;
@@ -208,12 +240,12 @@
     opacity: 0.5;
     transition: opacity 0.2s;
   }
-  .nav-pill:hover { color: var(--text); background: var(--surface); }
+  .nav-pill:hover { color: var(--text); background: rgba(255,255,255,0.055); transform: translateY(-1px); }
   .nav-pill.active {
     color: var(--active);
-    background: var(--surface);
+    background: linear-gradient(135deg, var(--active-glow), rgba(255,255,255,0.055));
     border: 1px solid var(--border2);
-    border-bottom: 1px solid var(--surface);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025);
   }
   .nav-pill.active .dot { opacity: 1; }
   .nav-pill[data-profile="dev"].active { --active: var(--accent-dev); color: var(--accent-dev); }
@@ -232,12 +264,15 @@
   /* HERO BANNER */
   .hero-banner {
     position: relative;
-    padding: 2rem 2rem;
-    border-radius: 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    margin-bottom: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.4rem);
+    border-radius: 20px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.08), transparent 46%),
+      var(--surface);
+    border: 1px solid var(--border2);
+    margin-bottom: 1.25rem;
     overflow: hidden;
+    box-shadow: var(--shadow);
   }
   .hero-banner::before {
     content: '';
@@ -249,10 +284,10 @@
   .hero-accent {
     position: absolute;
     top: -60px; right: -60px;
-    width: 220px; height: 220px;
+    width: 280px; height: 280px;
     border-radius: 50%;
     background: var(--active);
-    opacity: 0.06;
+    opacity: 0.12;
     filter: blur(40px);
   }
   .hero-label {
@@ -264,7 +299,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--active);
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.07);
     border: 1px solid rgba(255,255,255,0.1);
     padding: 0.3rem 0.75rem;
     border-radius: 20px;
@@ -272,45 +307,78 @@
   }
   .hero-title {
     font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.75rem, 4vw, 3.4rem);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.05;
     letter-spacing: -0.02em;
     position: relative;
     z-index: 1;
   }
   .hero-desc {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--muted);
     line-height: 1.7;
     margin-top: 0.75rem;
-    max-width: 680px;
+    max-width: 760px;
     position: relative;
     z-index: 1;
+  }
+  .hero-stats {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+    max-width: 780px;
+  }
+  .hero-stat {
+    padding: 0.85rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.045);
+  }
+  .hero-stat strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    color: var(--active);
+    line-height: 1;
+  }
+  .hero-stat span {
+    display: block;
+    margin-top: 0.28rem;
+    color: var(--muted);
+    font-size: 0.78rem;
   }
 
   /* GRID */
   .section-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
     margin-bottom: 1.25rem;
   }
   .section-grid.three { grid-template-columns: 1fr 1fr 1fr; }
   .section-grid.full { grid-template-columns: 1fr; }
   @media(max-width: 720px) {
     .section-grid, .section-grid.three { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .contacts { justify-content: flex-start; }
+    .profile-nav { position: static; }
   }
 
   /* CARDS */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 1.5rem;
-    transition: border-color 0.2s;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.16);
+    backdrop-filter: blur(14px);
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
   }
-  .card:hover { border-color: var(--border2); }
+  .card:hover { border-color: var(--border2); transform: translateY(-2px); background: var(--surface2); }
   .card-label {
     font-size: 0.7rem;
     font-weight: 500;
@@ -341,7 +409,7 @@
   .exp-dot {
     width: 36px; height: 36px;
     border-radius: 10px;
-    background: rgba(255,255,255,0.04);
+    background: linear-gradient(135deg, var(--active-glow), rgba(255,255,255,0.04));
     border: 1px solid var(--border2);
     display: flex;
     align-items: center;
@@ -407,7 +475,7 @@
   .tag {
     font-size: 0.78rem;
     padding: 0.28rem 0.65rem;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.05);
     border: 1px solid var(--border);
     border-radius: 6px;
     color: var(--text);
@@ -417,23 +485,53 @@
   .tag:hover { border-color: var(--border2); background: rgba(255,255,255,0.07); }
   .tag.highlight {
     border-color: rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.07);
+    background: var(--active-glow);
     color: var(--active);
     border-color: var(--active);
   }
 
   /* PROJECTS */
-  .project-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
+  .projects-card {
+    background:
+      linear-gradient(135deg, var(--active-glow), transparent 34%),
+      var(--surface);
   }
-  .project-item:first-child { padding-top: 0; }
-  .project-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .project-item {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    margin-bottom: 0.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  }
+  .project-item::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--active);
+    opacity: 0.85;
+  }
+  .project-item:hover {
+    border-color: color-mix(in srgb, var(--active) 52%, var(--border2));
+    background: rgba(255,255,255,0.065);
+    transform: translateY(-2px);
+  }
+  .project-item:first-child { padding-top: 1rem; }
+  .project-item:last-child { border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 0; }
   .project-name {
     font-family: 'Syne', sans-serif;
     font-weight: 600;
-    font-size: 0.92rem;
+    font-size: 0.98rem;
+    line-height: 1.3;
   }
+  .project-name a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .project-name a:hover { color: var(--active); }
   .project-date {
     font-size: 0.74rem;
     color: var(--muted);
@@ -443,7 +541,39 @@
   .project-desc {
     font-size: 0.82rem;
     color: var(--muted);
-    line-height: 1.55;
+    line-height: 1.6;
+  }
+  .project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+  }
+  .project-tools span {
+    color: var(--active);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid color-mix(in srgb, var(--active) 42%, transparent);
+    background: var(--active-glow);
+    border-radius: 999px;
+    padding: 0.22rem 0.52rem;
+  }
+  .project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--border2);
+    background: rgba(255,255,255,0.065);
+    border-radius: 999px;
+    padding: 0.2rem 0.48rem;
+    margin-bottom: 0.45rem;
   }
 
   /* EDUCATION */
@@ -542,7 +672,7 @@
       <div class="brand">
         <div class="avatar-wrapper" >
           <div class="avatar" id="avatarDisplay">
-            <span id="avatarInitials"><img src="./wajdi.png" alt="wajdi.png"></span>
+            <span id="avatarInitials"><img src="wajdi.png" alt="Photo de Mili Wajdi" onerror="this.remove(); document.getElementById('avatarInitials').textContent='MW';"></span>
           </div>
           <div class="avatar-overlay">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -599,6 +729,11 @@
       <div class="hero-label">🧩 Profile </div>
       <div class="hero-title">Ingénieur Full Stack Junior</div>
       <p class="hero-desc">Développeur passionné, diplômé en ingénierie informatique spécialité Cloud Computing &amp; DevOps. Solide base en développement mobile Android (Java), backend Spring Boot, et compétences intermédiaires en Angular. Autonome, curieux et motivé.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>3+</strong><span>projets applicatifs</span></div>
+        <div class="hero-stat"><strong>Java</strong><span>Android &amp; Spring Boot</span></div>
+        <div class="hero-stat"><strong>API</strong><span>REST, MySQL, Firebase</span></div>
+      </div>
     </div>
 
     <div class="section-grid">
@@ -698,22 +833,40 @@
       </div>
 
       <!-- Projects -->
-      <div class="card">
+      <div class="card projects-card">
         <div class="card-label">Projets</div>
         <div class="project-item">
           <div class="project-name">Gestion des employés (Spring Boot + Angular)</div>
           <div class="project-date">09/2024 – 12/2024</div>
           <div class="project-desc">Backend API REST sécurisée + interface Angular responsive. CRUD complet (employés, départements, salaires).</div>
+          <div class="project-tools"><span>Spring Boot</span><span>Angular</span><span>MySQL</span><span>REST API</span></div>
         </div>
         <div class="project-item">
-          <div class="project-name">Smart Home – Laravel, Android, Arduino</div>
+          <div class="project-status">Projet GitHub</div>
+          <div class="project-name"><a href="https://github.com/wajdi1122/mico-service" target="_blank" rel="noreferrer">Microservices E-commerce Platform</a></div>
+          <div class="project-date">GitHub · Java</div>
+          <div class="project-desc">Architecture microservices avec Eureka, API Gateway, client-service et order-service. Projet utile pour montrer backend distribué, découpage métier et communication entre services.</div>
+          <div class="project-tools"><span>Java</span><span>Spring Cloud</span><span>Eureka</span><span>API Gateway</span></div>
+        </div>
+        <div class="project-item">
+          <div class="project-status">Projet GitHub</div>
+          <div class="project-name"><a href="https://github.com/wajdi1122/SmartHome" target="_blank" rel="noreferrer">Smart Home – Laravel, Android, Arduino</a></div>
           <div class="project-date">02/2024 – 05/2024</div>
           <div class="project-desc">Système domotique intégrant une app Android pour le contrôle à distance, backend Firebase connecté à des capteurs Arduino.</div>
+          <div class="project-tools"><span>Android Java</span><span>Laravel</span><span>Arduino</span><span>Firebase</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Web App de gestion de location de voitures</div>
           <div class="project-date">02/2024</div>
           <div class="project-desc">Application mobile Android pour la gestion complète des voitures de location (ajout, réservation, suivi, disponibilité).</div>
+          <div class="project-tools"><span>Android</span><span>Java</span><span>CRUD</span><span>UX mobile</span></div>
+        </div>
+        <div class="project-item">
+          <div class="project-status">Concept portfolio</div>
+          <div class="project-name">Recruiter-ready SaaS Dashboard</div>
+          <div class="project-date">Idée à développer</div>
+          <div class="project-desc">Tableau de bord SaaS multi-rôles avec authentification JWT, analytics, gestion d'abonnements et interface responsive. À présenter comme prototype pour montrer un produit complet.</div>
+          <div class="project-tools"><span>Angular</span><span>Spring Boot</span><span>JWT</span><span>PostgreSQL</span></div>
         </div>
       </div>
     </div>
@@ -781,6 +934,11 @@
       <div class="hero-label">☁️ Profile</div>
       <div class="hero-title">Ingénieur Cloud &amp; DevOps</div>
       <p class="hero-desc">Maîtrise d'AWS, Terraform, Kubernetes, CI/CD et l'automatisation. Expérience pratique dans la conception et le déploiement d'infrastructures cloud évolutives, avec une passion pour l'optimisation cloud et la fiabilité des systèmes.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>IaC</strong><span>Terraform &amp; Ansible</span></div>
+        <div class="hero-stat"><strong>AWS</strong><span>ECS, RDS, ALB, VPC</span></div>
+        <div class="hero-stat"><strong>K8s</strong><span>Kubernetes, K3s, OpenShift</span></div>
+      </div>
     </div>
 
     <div class="section-grid">
@@ -870,27 +1028,52 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card projects-card">
         <div class="card-label">Projets DevOps &amp; Cloud</div>
+        <div class="project-item">
+          <div class="project-status">Projet GitHub</div>
+          <div class="project-name"><a href="https://github.com/wajdi1122/Terraform" target="_blank" rel="noreferrer">Infrastructure AWS ECS Fargate avec Terraform</a></div>
+          <div class="project-date">GitHub · HCL</div>
+          <div class="project-desc">Infrastructure as Code pour ECS Fargate, VPC, ALB et RDS. Projet fort pour montrer une approche cloud reproductible et orientée production.</div>
+          <div class="project-tools"><span>Terraform</span><span>AWS ECS</span><span>VPC</span><span>RDS</span></div>
+        </div>
+        <div class="project-item">
+          <div class="project-status">Projet GitHub</div>
+          <div class="project-name"><a href="https://github.com/wajdi1122/terraform_azure" target="_blank" rel="noreferrer">Azure Container Apps Infrastructure</a></div>
+          <div class="project-date">GitHub · HCL</div>
+          <div class="project-desc">Déploiement d'une infrastructure Azure Container Apps avec Terraform, pensée pour héberger des services conteneurisés modernes.</div>
+          <div class="project-tools"><span>Azure</span><span>Terraform</span><span>Container Apps</span><span>IaC</span></div>
+        </div>
         <div class="project-item">
           <div class="project-name">Plateforme Cloud Privé (OpenStack)</div>
           <div class="project-date">09/2024 – 12/2024</div>
           <div class="project-desc">Conception et déploiement d'un cloud privé avec OpenStack et conteneurs, incluant un provisioning automatisé.</div>
+          <div class="project-tools"><span>OpenStack</span><span>Docker</span><span>Provisioning</span><span>Linux</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Supervision ELK &amp; Prometheus-Grafana</div>
           <div class="project-date">10/2024</div>
           <div class="project-desc">Centralisation des logs et monitoring avec ELK Stack et Prometheus-Grafana.</div>
+          <div class="project-tools"><span>ELK</span><span>Prometheus</span><span>Grafana</span><span>Monitoring</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Script Ansible – Serveur Web Complet</div>
           <div class="project-date">02/2024</div>
           <div class="project-desc">Automatisation du déploiement d'une pile serveur web avec Ansible.</div>
+          <div class="project-tools"><span>Ansible</span><span>Nginx</span><span>Linux</span><span>Automation</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Kubernetes Cluster avec K3s</div>
           <div class="project-date">01/2024</div>
           <div class="project-desc">Déploiement d'un cluster Kubernetes léger avec K3s pour l'orchestration de conteneurs.</div>
+          <div class="project-tools"><span>K3s</span><span>Kubernetes</span><span>Docker</span><span>Cluster</span></div>
+        </div>
+        <div class="project-item">
+          <div class="project-status">Concept portfolio</div>
+          <div class="project-name">DevSecOps Pipeline avec GitOps</div>
+          <div class="project-date">Idée à développer</div>
+          <div class="project-desc">Pipeline CI/CD complet avec scans sécurité, build Docker, déploiement Kubernetes et stratégie GitOps. Très attractif pour des offres Cloud, DevOps et Platform Engineer junior.</div>
+          <div class="project-tools"><span>GitHub Actions</span><span>Trivy</span><span>Argo CD</span><span>Kubernetes</span></div>
         </div>
       </div>
     </div>
@@ -949,6 +1132,11 @@
       <div class="hero-label">🖥️ Profile</div>
       <div class="hero-title">Technicien Systèmes &amp; Réseaux</div>
       <p class="hero-desc">Technicien informatique spécialisé en systèmes et réseaux avec une solide formation en administration Linux et Windows. Motivé, rigoureux et capable d'assurer l'installation, la maintenance et le support des infrastructures informatiques.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Linux</strong><span>Ubuntu, Red Hat, services</span></div>
+        <div class="hero-stat"><strong>Réseau</strong><span>TCP/IP, VPC, GNS3</span></div>
+        <div class="hero-stat"><strong>Infra</strong><span>virtualisation &amp; supervision</span></div>
+      </div>
     </div>
 
     <div class="section-grid">
@@ -1040,32 +1228,51 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card projects-card">
         <div class="card-label">Projets Infrastructure</div>
+        <div class="project-item">
+          <div class="project-status">Projet GitHub</div>
+          <div class="project-name"><a href="https://github.com/wajdi1122/terraform_aws" target="_blank" rel="noreferrer">Infrastructure ECS Fargate sur AWS</a></div>
+          <div class="project-date">GitHub · HCL</div>
+          <div class="project-desc">Infrastructure réseau et compute autour d'ECS Fargate, utile pour démontrer VPC, load balancing, segmentation réseau et déploiement cloud.</div>
+          <div class="project-tools"><span>AWS</span><span>VPC</span><span>ALB</span><span>ECS</span></div>
+        </div>
         <div class="project-item">
           <div class="project-name">Plateforme Cloud Privé (OpenStack)</div>
           <div class="project-date">09/2024 – 12/2024</div>
           <div class="project-desc">Conception et déploiement d'un cloud privé avec OpenStack et conteneurs, incluant un provisioning automatisé.</div>
+          <div class="project-tools"><span>OpenStack</span><span>Réseau</span><span>VM</span><span>Linux</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Supervision ELK &amp; Prometheus-Grafana</div>
           <div class="project-date">10/2024</div>
           <div class="project-desc">Centralisation des logs et monitoring avec ELK Stack et Prometheus-Grafana.</div>
+          <div class="project-tools"><span>Logs</span><span>Metrics</span><span>Alerting</span><span>Dashboard</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Virtualisation Clés de Chiffrement – Arduino</div>
           <div class="project-date">02/2024 – 05/2024</div>
           <div class="project-desc">Système conteneurisé pour la gestion des clés de chiffrement, intégré avec des cartes Arduino.</div>
+          <div class="project-tools"><span>Docker</span><span>Arduino</span><span>Sécurité</span><span>Linux</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Script Ansible – Serveur Web</div>
           <div class="project-date">02/2024</div>
           <div class="project-desc">Automatisation du déploiement d'une pile serveur web avec Ansible.</div>
+          <div class="project-tools"><span>Ansible</span><span>Serveur web</span><span>Déploiement</span><span>SSH</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">Kubernetes Cluster avec K3s</div>
           <div class="project-date">01/2024</div>
           <div class="project-desc">Déploiement d'un cluster Kubernetes léger avec K3s pour l'orchestration de conteneurs.</div>
+          <div class="project-tools"><span>K3s</span><span>Cluster</span><span>Containers</span><span>Ops</span></div>
+        </div>
+        <div class="project-item">
+          <div class="project-status">Concept portfolio</div>
+          <div class="project-name">Homelab Linux Haute Disponibilité</div>
+          <div class="project-date">Idée à développer</div>
+          <div class="project-desc">Lab systèmes avec services Linux, reverse proxy, sauvegardes automatisées, supervision et documentation d'exploitation. Bon projet pour montrer rigueur admin système.</div>
+          <div class="project-tools"><span>Linux</span><span>Nginx</span><span>Backup</span><span>Monitoring</span></div>
         </div>
       </div>
     </div>
@@ -1128,6 +1335,11 @@
       <div class="hero-label">🔌 Profile</div>
       <div class="hero-title">Ingénieur Embarqué &amp; IoT</div>
       <p class="hero-desc">Ingénieur orienté systèmes embarqués et IoT, avec des compétences en développement logiciel, virtualisation et intégration de systèmes connectés. Expérience dans la mise en place de solutions combinant matériel (Arduino) et logiciels, ainsi que dans l'automatisation et le déploiement d'environnements techniques.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>IoT</strong><span>capteurs, Arduino, données</span></div>
+        <div class="hero-stat"><strong>Mobile</strong><span>Android Java connecté</span></div>
+        <div class="hero-stat"><strong>Cloud</strong><span>services, conteneurs, API</span></div>
+      </div>
     </div>
 
     <div class="section-grid">
@@ -1205,27 +1417,39 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card projects-card">
         <div class="card-label">Projets IoT &amp; Embarqués</div>
         <div class="project-item">
           <div class="project-name">Virtualisation Clés de Chiffrement – Arduino &amp; Conteneurs</div>
           <div class="project-date">02/2024 – 05/2024</div>
           <div class="project-desc">Système conteneurisé pour la gestion des clés de chiffrement, intégré avec des cartes Arduino.</div>
+          <div class="project-tools"><span>Arduino</span><span>Docker</span><span>Crypto</span><span>C/C++</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">SmartGuard IoT System</div>
           <div class="project-date">02/2024 – 03/2024</div>
           <div class="project-desc">Système de surveillance intelligent basé sur capteurs IoT — détection d'événements avec notifications temps réel, supervision via interface mobile connectée.</div>
+          <div class="project-tools"><span>IoT</span><span>Capteurs</span><span>Temps réel</span><span>Mobile</span></div>
         </div>
         <div class="project-item">
-          <div class="project-name">SmartHome IoT Control System</div>
+          <div class="project-status">Projet GitHub</div>
+          <div class="project-name"><a href="https://github.com/wajdi1122/SmartHome" target="_blank" rel="noreferrer">SmartHome IoT Control System</a></div>
           <div class="project-date">10/2023 – 01/2024</div>
           <div class="project-desc">Système domotique avec capteurs et actionneurs Arduino + app Android Java. Firebase pour la gestion des données en temps réel.</div>
+          <div class="project-tools"><span>Arduino</span><span>Android</span><span>Firebase</span><span>Domotique</span></div>
         </div>
         <div class="project-item">
           <div class="project-name">IoT Car Rent Platform</div>
           <div class="project-date">10/2023 – 01/2024</div>
           <div class="project-desc">Système de location de véhicules intelligent avec accès QR Code, synchronisation Firebase pour le contrôle et le suivi des utilisateurs.</div>
+          <div class="project-tools"><span>QR Code</span><span>Firebase</span><span>Android</span><span>IoT</span></div>
+        </div>
+        <div class="project-item">
+          <div class="project-status">Concept portfolio</div>
+          <div class="project-name">Edge IoT Fleet Monitoring</div>
+          <div class="project-date">Idée à développer</div>
+          <div class="project-desc">Prototype de suivi d'équipements connectés avec collecte capteurs, buffer local, synchronisation cloud et dashboard mobile. Très bon concept pour montrer IoT + cloud + données temps réel.</div>
+          <div class="project-tools"><span>MQTT</span><span>Arduino</span><span>Firebase</span><span>Dashboard</span></div>
         </div>
       </div>
     </div>
